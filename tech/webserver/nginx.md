@@ -23,7 +23,7 @@
 * /etc/nginx -> main 
 * /etc/nginx/nginx.conf -> config
 * /var/log/nginx/access.log -> nginx server logs
-* /var/log/nginx/error.lo -> nginx error logs
+* /var/log/nginx/error.log -> nginx error logs
 
 # Soruce:
 https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-16-04
