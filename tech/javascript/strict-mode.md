@@ -87,8 +87,45 @@ var x = 100,
  
 console.log(x + y + z) // 112
 ```
-* With 
+* With
+```js
+'use strict';
+
+var x = {
+ y: { 
+  z: {
+   a: 'text'
+  }
+ }
+};
+
+var a = 'hello'; 
+
+with(x.y.z) { // throws error
+ console.log(a);
+}
+console.log(x + y + z) // 112
+```
 * This scope 
+```js
+'use strict';
+
+var x = {
+ a: 'Hello World',
+ fn: function() {
+  console.log(this); // print global value
+  console.log(this.a);
+ }
+};
+
+var y = {
+ a: 'this is new world'
+};
+
+var print = x.fn();
+
+print();
+```
 * Eval
 
 
