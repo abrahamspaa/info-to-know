@@ -55,8 +55,38 @@ obj.message = 'Hello world'; // Throws error
 
 ```
 * Deleting properties 
+```js
+'use strict';
+
+var obj = { a: 1, b: 2 },
+  myVar = 10;
+  
+delete obj.a;
+delete myVar;  // this will not delete
+delete obj; // this will not delete
+
+console.log(myVar);
+console.log(obj);
+```
 * Duplicates
+```js
+'use strict';
+
+function x(a, b, a) { // Second a will throw an error
+ console.log(a);
+}
+x(1, 2, 3);
+```
 * Octal and Hexidecimals 
+```js
+'use strict';
+
+var x = 100,
+ y = 012, // throws error
+ z = 002; // throws error
+ 
+console.log(x + y + z) // 112
+```
 * With 
 * This scope 
 * Eval
