@@ -54,6 +54,11 @@ Object.defineProperty(obj, 'readonly', {
 obj.message = 'Hello world'; // Throws error 
 
 ```
-
+* Deleting properties 
+* Duplicates
+* Octal and Hexidecimals 
+* With 
+* This scope 
+* Eval
 
 
