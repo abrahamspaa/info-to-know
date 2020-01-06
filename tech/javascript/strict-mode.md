@@ -39,3 +39,21 @@
    console.log(printThis)
 
    ```
+* Read only properties 
+```js 
+'use strict';
+var obj = {};
+
+Object.defineProperty(obj, 'readonly', {
+ enumerable: false,
+ configurable: false,
+ writable: false,
+ value: 'Hello world'
+});
+
+obj.message = 'Hello world'; // Throws error 
+
+```
+
+
+
