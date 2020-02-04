@@ -20,7 +20,9 @@
 
 ## To Copy (mongo < 4.2)
 `mongodump --uri="mongodb:<url>"`
-`mongorestore -d <local-database name> <path>` 
+
+## To restore to local
+`mongorestore -d <local-database name> <path> or mongorestore <path>` 
 
 # Soruce:
 https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-18-04
