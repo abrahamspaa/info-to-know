@@ -46,7 +46,9 @@ npm -> commander
 # Error 
 
 
-* 
+* process.stdin -> standard in
+* process.stdout -> standard out
+* process.stderr -> standard error 
 
 
 
