@@ -29,4 +29,26 @@ User below
 * npm configstore and inquire
 
 
+# Store Username or credential
+
+npm -> keytar-prebuild
+
+# options and commands 
+
+npm -> commander
+
+# Folder Structure 
+
+* CLI command -> bin dir 
+* code implmeneted -> commands dir
+* command user function -> lib dir
+
+# Error 
+
+
+* 
+
+
+
 Example: https://github.com/pofallon/twine/tree/master
+
