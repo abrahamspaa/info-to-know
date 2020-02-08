@@ -48,6 +48,6 @@ hashed.toString('hex');
 
 ## Usefull link:
 
-https://haveibeenpwned.com/
-https://hashtoolkit.com/
-https://hunter2.com/zero-to-hashing-in-under-10-minutes-argon2-in-nodejs
+* https://haveibeenpwned.com/
+* https://hashtoolkit.com/
+* https://hunter2.com/zero-to-hashing-in-under-10-minutes-argon2-in-nodejs
