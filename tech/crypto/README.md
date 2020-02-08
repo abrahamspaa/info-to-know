@@ -34,7 +34,7 @@ hash.digest('hex');
 
 ```js
 const crypto = require('crypto');
-const password = '<password>'
+const password = '<password>';
 const salt = crypto.randomBytes('sha256').toString('hex');
 const hashed = crypto.pdkdf2Sync(password, salt, 100000, 512, 'sha512')
 hashed.toString('hex');
@@ -44,6 +44,32 @@ hashed.toString('hex');
 
 
 
+## Symmetric Encryption
+
+Steps 
+- one key 
+- Makes data unreadable
+
+```js
+// Encrypt
+const crypto = require('crypto');
+const algorithm = 'aes-256-cbc';
+const password = '<password>';
+const salt = crypto.randomBytes('32');
+const key = crypto.pdkdf2Sync(password, salt, 32);
+const iv = crypto.randomBytes(16);
+const cipher = crypto.createCipheriv(algorithm, key, iv);
+
+let text = <text>;
+let encrypted = cipher.update(text, 'utf8', 'hex');
+
+encrypted += cipher.final('hex');
+
+// Decrypt 
+const decipher = crypto.createDecipheriv(algorithm, key, iv);
+
+let decrypted = decipher.update(encrypted, 'hex', 'utf8');
+```
 
 
 ## Usefull link:
@@ -51,3 +77,4 @@ hashed.toString('hex');
 * https://haveibeenpwned.com/
 * https://hashtoolkit.com/
 * https://hunter2.com/zero-to-hashing-in-under-10-minutes-argon2-in-nodejs
+* https://justinboyerwriter.com/2017/07/29/developers-guide-cryptography-basics/
