@@ -117,7 +117,11 @@ Factor ?
 
 
 
+# Real Time 
 
+- For Login user use two factor authentication 
+- For Application server use Asymmetric Encryption (Public and private key)
+- For Data Base use symmetric Encryption (Key store)
 
 
 
@@ -127,3 +131,9 @@ Factor ?
 * https://hashtoolkit.com/
 * https://hunter2.com/zero-to-hashing-in-under-10-minutes-argon2-in-nodejs
 * https://justinboyerwriter.com/2017/07/29/developers-guide-cryptography-basics/
+
+
+## Example:
+
+- NodeGoat - https://github.com/OWASP/NodeGoat
+
