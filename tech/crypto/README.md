@@ -43,8 +43,9 @@ hashed.toString('hex');
 * bcrypt
 
 
+### Protecting data at rest 
 
-## Symmetric Encryption
+#### Symmetric Encryption
 
 Steps 
 - one key 
@@ -70,6 +71,54 @@ const decipher = crypto.createDecipheriv(algorithm, key, iv);
 
 let decrypted = decipher.update(encrypted, 'hex', 'utf8');
 ```
+#### vault
+
+### Protecting data in Transit 
+
+#### Asymmetric Encryption
+
+```js
+// Encrypt
+const crypto = require('crypto');
+const user1 = crypto.createDiffieHellman(2048);
+const user1key = user1.generateKeys();
+
+const user2 = crypto.createDiffieHellman(user1.getPrime(), user1.getGenerator());
+const user2Key = user2.generateKeys();
+
+const user1Secret = user1.computeSecret(user2key);
+const user2Secret = user2.computeSecret(user1key);
+
+console.log(user1Secret.toString('hex'));
+console.log(user2Secret.toString('hex'));
+```
+
+#### HMAC - document is not change
+
+```js
+// Encrypt
+const crypto = require('crypto');
+const hmac = crypto.createHmac('sha256', 'a secret');
+
+hmac.update('date to protect');
+console.log(hmac.digest('hex')); // this document between user1 and user2 should be same 
+```
+
+### Two factor Authentication 
+
+Factor ?
+
+- Password 
+- Token or ID card or soft token 
+- Biometrics 
+- One Time Password (OTP) ( Speak Easy Lib)
+
+
+
+
+
+
+
 
 
 ## Usefull link:
