@@ -6,7 +6,7 @@ which use perform task eg: bundling, create, compiler
 
 * [npm scripts](https://docs.npmjs.com/misc/scripts) 
 * [Grunt](https://gruntjs.com/)
-* [Glup](https://gulpjs.com/)
+* [Gulp](https://gulpjs.com/)
 * [Webpack](https://webpack.js.org/)
 * [Parcel](https://parceljs.org/)
 * [Rollup](https://rollupjs.org/)
