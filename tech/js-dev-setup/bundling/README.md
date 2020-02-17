@@ -1,5 +1,5 @@
 # Bundling 
-
+Web application bundlers help you to pack the assets of your web application (code, images, packages etc.)
 
 ## Module Formats 
 * [IIFE(Immediately Invoked Function Expression)](https://developer.mozilla.org/en-US/docs/Glossary/IIFE)
@@ -15,4 +15,5 @@
 * [WebPack](webpack.js.org)
 * [Rollup](https://rollupjs.org/) 
 * [JSPM](https://jspm.org/)
+* [Parcel](https://parceljs.org/)
 
