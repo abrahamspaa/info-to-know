@@ -1,6 +1,6 @@
 # Automation 
 
-which use perform task eg: bundling, create, compiler
+which use perform group of task
 
 ## List of Automater 
 
