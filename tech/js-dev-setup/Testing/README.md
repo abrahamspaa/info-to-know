@@ -34,3 +34,14 @@
   
 ## Coverage 
 * [istanbul](https://istanbul.js.org)
+
+## Mock API 
+* Nock 
+* Static JSON 
+* Sinon
+* Test Web Server 
+ * api-mock 
+ * [Mocky](https://www.mocky.io/)
+ * JSON Server
+ * JSON Schema faker
+ * Mirage
