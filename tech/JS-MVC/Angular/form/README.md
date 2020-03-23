@@ -48,8 +48,67 @@ This is stated are manged by form build blocks, which is used in RDA or TDA
     * Model Defined 
     * Data Model defined 
 
+#### TDM (FormsModule)
+
+Import Below for using TDM
+* ngForm 
+* ngModel 
+* ngModelGroup 
+
+
+Note: ngModel will be create automatically 
+
+```html
+<form (ngSubmit)="save()"> // FormGroup 
+ <input [(ngModel)] = "cutomer.firstname" name="firstName" #firstNameVar="ngModel" /> // FormControl, we have user '#' Template reference variable.  
+</form>
+```
+
+* HTML to TDM 
+
+HTML code
+```html
+<form>
+ <div>
+  <label for="name">Name</label>
+  <input id="name" required minlenght="3" />
+ </div>
+ <button type="submit">save</button>
+</form>
+```
+Angular TDM code 
+```html
+<form (ngSubmit)="save()">
+ <div>
+  <label for="name">Name</label>
+  <input id="name" required minlenght="3" 
+         [(ngModel)]="customer.name"
+         name="name"
+         #nameVar="ngModel"
+         [ngClass]='{'is-valid': nameVar.touched && !nameVar.valid}'/>
+
+  <span *ngIf="nameVar.errors">
+   Please enter your name.
+  </span>
+ </div>
+  <button type="submit">save</button>
+</form>
+```
+
+#### RDM (ReactiveFormsModule)
+
+Import Below for RDM 
+
+* formGroup 
+* formControl
+* formControlName
+* formGroupName
+* formArrayName
+
+Note: ngModel willn't be create automatically
+
 
 
 Ref: 
-https://angular.io/start/start-forms
-https://github.com/DeborahK/Angular-ReactiveForms
+* https://angular.io/start/start-forms
+* https://github.com/DeborahK/Angular-ReactiveForms
