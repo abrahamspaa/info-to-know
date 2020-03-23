@@ -16,6 +16,7 @@ TDA
 * Track the form and input element state (Ex: Submit disabled)
 
 RDA
+* Add ReactiveFormModule to import array in app.modules
 * More Flexible
 * More Complex scenarios 
 * Immutable data model
@@ -78,7 +79,7 @@ HTML code
 ```
 Angular TDM code 
 ```html
-<form (ngSubmit)="save()">
+<form novalidate (ngSubmit)="save(checkForm)" #checkForm="ngForm">
  <div>
   <label for="name">Name</label>
   <input id="name" required minlenght="3" 
@@ -95,7 +96,29 @@ Angular TDM code
 </form>
 ```
 
+```js
+...
+import { NgForm } from '@angular/forms'; 
+...
+
+export class form implments OnInit {
+ ngOnInit() {}
+ 
+ save(formData: NgForm) {
+  console.log(formData)
+  console.log(formData.value)
+ }
+}
+```
+
 #### RDM (ReactiveFormsModule)
+
+- We need to create FormControl, FormGroup and FromModel
+
+*Form Model*
+* Root FormGroup (Ex: Form html element)
+* FormControl (Ex: input)
+* Nested FormGroups 
 
 Import Below for RDM 
 
@@ -107,6 +130,87 @@ Import Below for RDM
 
 Note: ngModel willn't be create automatically
 
+* HTML to RDM 
+
+HTML code
+```html
+<form>
+ <div>
+  <label for="name">Name</label>
+  <input id="name" required minlenght="3" />
+ </div>
+ <button type="submit">save</button>
+</form>
+```
+Angular RDM code 
+```html
+<form novalidate (ngSubmit)="save()" [formGroup]="userForm">
+ <div>
+  <label for="name">Name</label>
+  <input id="name"
+         formControlName="name"
+         [ngClass]='{'is-valid': formError.name}'/>
+
+  <span *ngIf="formError.name">
+   {{formError.name}}
+  </span>
+ </div>
+ 
+ <div>
+  <label for="password">Password</label>
+  <input id="password"
+         formControlName="password"
+         [ngClass]='{'is-valid': formError.password}'/>
+
+  <span *ngIf="formError.password">
+   {{formError.password}}
+  </span>
+ </div>
+  <button type="submit">save</button>
+</form>
+```
+```js
+import { FormGroup, FormControl } from '@angular/forms';
+
+
+export class login implements OnInit {
+ userForm: FormGroup;
+ 
+ ngOnInit(): void {
+  this.userForm: new FormGroup({ // Root form Group
+   name: new FormControl(),
+   password: new FormControl()
+  }); // this is called Form Model
+ }
+ 
+ save() {
+  console.log(this.userForm)
+  console.log(this.userForm.value)
+ }
+}
+```
+
+##### Acceessing Form model
+
+```js
+
+// Option 1
+userForm.controls.name.valid
+// Option 2
+userForm.get('name').valie
+
+// Options 3
+
+name = new FormControl();
+
+ngOnInit: void() {
+  this.userForm = new FormGroup({
+   name: this.name,
+.....
+  })
+}
+name.valid
+```
 
 
 Ref: 
