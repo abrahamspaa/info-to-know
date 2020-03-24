@@ -402,6 +402,93 @@ showError(c:AbstractControl): void {
 {{ nameMessage }}
 ```
 
+### CRUD 
+
+* use Data Access Layer 
+ * Sepration of Concerns
+ * Reusablity
+ * Data Sharing
+ 
+* Steps to make HTTP calls 
+
+ * Import Http client Module
+   ```js
+   // app.module.ts
+
+   import { HttpClientModule } from '@angular/common/http';
+   ...
+   imports: [
+    HttpClientModule
+   ]
+   ```
+   
+ * Mock Server 
+  * use angular-in-memory-web-api
+    * yarn -D angular-in-memory-web-api
+    * import to app.module or place you want 
+      ```js
+       // app.module.ts
+       import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+       import namd from './name.data.ts'
+       ...
+       imports: [
+        InMemoryWebApiModule.forRoot(name)
+       ]
+       
+       // name.data.ts
+       
+       import { InMemoryDbService } from 'angular-in-memory-web-api';
+       
+       export class NameData implements InMemoryDbService {
+        createDb() {
+         const names = [{
+          id: 0,
+          ...
+         }, {
+          id: 1,
+          ...
+         }]
+        }
+       }
+      ```
+ 
+ * Create Service layer
+   ```js
+   // NameService
+   import { HttpClient, HttpHeaders } from '@angular/common/http';
+   import { Observable, of, throwError } from 'rxjs';
+   import { catchError, tap, map } from 'rxjs/operators';
+   ...
+   constructor(private http: HttpClient) {}
+   
+   getNames(id: number): Observable<> {
+    const url = `www.myservice.com/api/name/${id}`
+    
+    return this.http.get<Name>(url)
+     .pipe(
+      tap(data => console.log(data)),
+      catchError(error => console.error(error))
+     );
+   } 
+   ```
+ * Use in names 
+  ```js
+   contructor(private nameService: NameService)
+   getNames(id:number): void {
+    this.productService.getNames(id)
+     .subcribe({
+      next: (name) => this.displayName(name),
+      error: err => this.errorMessage = err
+     })
+   }
+  ```
+  
+
+
+
+
+
+
 Ref: 
 * https://angular.io/start/start-forms
 * https://github.com/DeborahK/Angular-ReactiveForms
