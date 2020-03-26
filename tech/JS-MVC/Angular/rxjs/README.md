@@ -87,10 +87,79 @@ const streams = from(['data1', 'data2']); // Output will be data1, data2
 
 ## RxJS Operators
 
+An operators is a function which transform and manipulate items in a Observable. We use Pipe method.
+
+```js
+of(2, 4, 6)
+  .pipe(
+    map(i => i * 2 ),
+    tap(i => console.log(i)),
+    take(2)
+  )
+  .subcribe(console.log)
+```
+
+### Async Pipe
+
+```js
+names: Names[] = [];
+
+constructor(private nameService: AuthService) {}
+
+ngOnInit() {
+  this.nameSubcribe = this.nameService.getNames().subscribe(names => this.names = names)
+}
+
+ngOnDestroy(): void {
+  this.nameSubcribe.unsubscribe();
+}
+```
+
+```html
+<div *ngIf="names">
+  <ul *ngFor="let name of names">
+     <li>{{ name.id }}</li>
+  </ul>
+</div>
+
+```
+With Async Pipe
+```
 
 
+names$: Observable<Names[]>;
+
+constructor(private nameService: AuthService) {}
+
+ngOnInit() {
+  this.names$ = this.nameService.getNames();
+}
+```
+
+```html
+<div *ngIf="names$ | async as names">
+  <ul *ngFor="let name of names">
+     <li>{{ name.id }}</li>
+  </ul>
+</div>
+
+```
+### catchError
+
+```js
+import { EMPTY } from 'rxjs';
+
+this.http.get<Name[]>(url).pipe(catchError(this.handleError));
+
+handleError(){
+  return EMPTY;
+}
+
+```
 
 
 Ref:
 
-https://rxjs-dev.firebaseapp.com/guide/overview
+* https://rxjs.dev/
+* https://rxmarbles.com/
+* https://github.com/DeborahK/Angular-RxJS/tree/master/APM-Final
