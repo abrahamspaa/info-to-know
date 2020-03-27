@@ -157,6 +157,68 @@ handleError(){
 
 ```
 
+## Combaining Streams 
+
+* combaineLatest 
+* forkJoin
+* withLastestFrom
+
+
+## Data Streams and Action Streams 
+
+Data Streams 
+
+```js
+names$ = this.http.get<Names[]>(url)
+```
+
+Action Streams 
+
+* Use built-in streams 
+* fromEvent
+* Subject/Behaviour Subject (Common way)
+  - Observable is unicast and Subject Multicast
+  - Behaviour Subject will have default value. 
+
+Step in actions 
+
+* Create Subject or BehaviourSubject
+* Combined action and data Streams 
+* Emit the value to actions `this.<actionName>.next(+<value>)`
+
+
+## Caching value
+
+*sharedReply(1)* will cache the value
+
+## High-order Observable/ map
+
+A observable emits an observable is called High-order Observable
+
+Check below 
+* concatMap 
+* mergeMap
+* switchMap
+
+## Side loading 
+* need to do manually 
+
+```js 
+selectedNames$ = this.selectedNames$
+  .pipe(
+    filter(selectedName => Boolean(selectedName)),
+    mergeMap(selectedName => 
+      from(selectedName.companyId)
+        .pipe(
+          mergeMap(companyId => this.http.get<Company>(`${url}/${companyId}`)),
+          toArray()
+        )
+      )
+    )
+
+```
+
+
 
 Ref:
 
