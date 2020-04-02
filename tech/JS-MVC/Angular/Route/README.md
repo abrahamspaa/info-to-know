@@ -237,3 +237,101 @@ this.route.parent.data.subscribe( data => {
 // logic data
 })
 ```
+## Component-less route 
+```js
+{
+  path: 'names'
+  childern: [
+    { path: '', component: NameListCOmponent},
+    { path: ':id', component: IDComponent },
+    { path: ':id/address', }
+  ]
+}
+```
+
+## Animation
+
+To highlight the active route link 
+```html
+  [routeLink]="['names']" routerLinkActive="className"
+```
+how to do animation 
+
+* import BrowserAnimationModule
+```js
+// app.module.ts
+
+import { BrowserAnimationModule } from '@angular/platform-browser/animations';
+
+imports: [
+  BrowserAnimationModule
+]
+```
+* Define the animation
+```js
+// put it in a common place 
+```
+* Register the animation in a component 
+```js
+// app.component.js
+import { slideInAnimation } from '<new path>'
+@Component({
+  animation: [slideInAnimation]
+})
+```
+```html
+<div [@slideInAnimation]="o.isActivated ? 0.activatedRoute : ''">
+  <router-outlet #o="outlet"></router-outlet>
+</div>
+```
+* trigger it 
+
+
+## Loading 
+
+```
+// app.component
+
+import { Router, Event, NavigationStart, NavigationEnd, NavigationError, NavigationCancel } from '@angular/router';
+
+loading = true;
+constructor (private router: Router) {
+  router.events.subscribe((routerEvent: Event) => {
+    if(routerEvent instanceof NavigationStart) {
+      this.loading = true;
+    }
+    
+    if (routerEvent instanceof NavigationEnd || routerEvent instanceof NavigationError || routerEvent instanceof NavigationCancel) {
+      this.loading = false;
+    }
+  })
+}
+
+```
+
+```html 
+  class="loading" *ngIf="loading"
+```
+
+## Lazy loading 
+
+when we make it?
+* If it is feature module 
+* Routes grouped under single parent 
+* Not Imported in any other module 
+
+How to make it
+
+* Just add your code in below formate only 
+* if you already added in app.module remove it
+
+```js 
+Router.forRoot([
+  {
+    path: 'names',
+    loadChildren: () => import('./names/name.module').then(m => m.NameModule)
+  }
+])
+
+// 
+```
