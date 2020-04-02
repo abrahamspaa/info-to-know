@@ -124,3 +124,71 @@ constructor(private route:ActivatedRoute) {
   this.route.snapshot.queryParamMap.get('name') // Paul
 }
 ```
+
+## Pre-fetch data 
+
+We can feed data to the route by below 
+
+* Route Parameters (/names/:id)
+* Options Parameters 
+* Query Parameters 
+* Route Data Property ({ path: '/names', component: NamedisplayComponent, data: { pageTitle: 'Names' }})
+* Route Resolver 
+* Angular Service 
+
+Route Resolver Example, it will be like a service 
+```js
+import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Resolver, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+
+import { Name } from './name';
+import { NameService } from './name.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+
+export class NameResolver implements Resolver <Name> {
+  contructor (private: nameService: NameService) {}
+
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Name> {
+    const id = Number(route.paramMap.get('id'));
+
+    if (!id) {
+      return null; // of({ name: null, error: { message: 'no id passed' } })
+    }
+    
+    
+    return this.nameService.getNameList(id);
+    
+  } 
+}
+
+// module.ts
+
+{ path : 'name/:id/edit', component: name, resolve: { resolvedData: NameResolver }}
+
+// NameEditCompoenent
+
+import { ActivatedRoute } from '@angular/core';
+
+contructor (private: route: ActivatedRoute) {
+  this.nameList = this.route.snapshot.data['resolvedData'];
+}
+```
+
+need to change when every data updated then follow below instead of above code 
+
+```js 
+// NameEditComponent 
+contructor (private: route: ActivatedRoute) {}
+
+ngOnInit(): void {
+ this.route.data.subscribe( data => {
+   const resovledData = data['resolvedData'];
+ })
+}
+```
+
+
