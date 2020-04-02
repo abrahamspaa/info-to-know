@@ -191,4 +191,49 @@ ngOnInit(): void {
 }
 ```
 
+## Child Route 
 
+```js 
+(app or feature).module.ts 
+
+{
+  path: 'name/:id',
+  component: NameDetail, 
+  childern: [
+    { path: 'address', component: AddressDetail }
+  ]
+}
+  ]
+}
+```
+
+```html 
+
+<div>
+  <h1>Primay Heading</h1>
+  
+  <router-outlet></router-outlet>
+```
+Access child route
+```html
+[routerLink]=['/names', name.id, 'edit', 'address']
+or
+[routerLink]=['address'] // in the feature module
+```
+```js
+this.route.navigate(['/names', this.name.id, 'edit', 'address'])
+// or 
+this.route.navigate(['address', { relativeTo: this.route/*(activatedRoute)*/ }])
+```
+
+To resolve data in parent route for child 
+
+```js 
+this.route.parent.snapshot.data['name']
+
+// or 
+
+this.route.parent.data.subscribe( data => {
+// logic data
+})
+```
