@@ -315,6 +315,15 @@ constructor (private router: Router) {
 
 ## Lazy loading 
 
+How it works ?
+
+* App loads
+* Download imported modules (Waits)
+* Template Appears 
+* when navigated to lazy loading route 
+* Download features (Waits)
+* Templated loaded
+
 when we make it?
 * If it is feature module 
 * Routes grouped under single parent 
@@ -325,7 +334,8 @@ How to make it
 * Just add your code in below formate only 
 * if you already added in app.module remove it
 
-```js 
+```js
+// route.app
 Router.forRoot([
   {
     path: 'names',
@@ -333,5 +343,77 @@ Router.forRoot([
   }
 ])
 
-// 
+// name.module
+
+Router.forRoot([
+  {
+    path: '',
+    component: NameDetails
+  }
+])
 ```
+
+Use canLoad for asyn modules loading. To avoid unwanted showing for html elements
+
+
+## Preloading 
+
+How it is works 
+
+* App loads
+* Download imported modules (Waits)
+* Template Appears 
+* Preload Modules 
+* when navigated to lazy loading route 
+* Templated loaded
+
+Type of preload 
+
+* no preload (default)
+* Preload all (canLoad will not work)
+```js
+// app-routing.module.ts
+
+import { RouterModule, PreloadAllModules } from '@angular/router';
+
+RouterModule.forRoot([
+  { 
+    path: '',
+    loadChildren: () => impor('').then(module => module.name)
+  }
+], { preloadingStrategy: PreloadAllModules})
+```
+* Custom preload 
+```js
+// Custom Service 
+import { Observable, of } from 'rxjs' ;
+import { Injectable } from '@angular/core';
+import { PreloadingStrategy } from '@angular/router';
+
+@Injectable({
+  providedIn: 'root'
+});
+
+export class Custom implements PreloadingStrategy {
+  preload(route: Route, load: Function): Observable <any> {
+    return route.data && route.data['preload'] ? load() : of(null);
+  }
+}
+// app-routing.module.ts
+
+import { Custom } from // Custom Service path;
+
+RouterModule.forRoot([
+  { 
+    path: '',
+    loadChildren: () => impor('').then(module => module.name),
+    data: {
+      preload: true 
+    }
+  }
+], { preloadingStrategy: Custom })
+
+```
+
+
+
