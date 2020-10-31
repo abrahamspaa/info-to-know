@@ -44,5 +44,5 @@
 # Soruce:
 https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-18-04
 https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
-
+To Remove https://stackoverflow.com/questions/48630553/homebrew-mongodb-connection-failed-mac-osx-sierra-10-12-6
 
