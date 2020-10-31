@@ -24,7 +24,25 @@
 ## To restore to local
 `mongorestore -d <local-database name> <path> or mongorestore <path>` 
 
+# Mac
+
+## Check monogo version 
+
+`mongod --version`
+
+## Checking monogo instant running 
+`ps -ef | grep mongod | grep -v grep | wc -l | tr -d ' '`
+
+## Start Monogo instant 
+`brew services start mongodb-community`
+
+## Stop Monogo instant
+
+`brew services stop mongodb-community`
+
+
 # Soruce:
 https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-18-04
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
 
 
