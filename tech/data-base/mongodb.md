@@ -34,14 +34,19 @@
 `ps -ef | grep mongod | grep -v grep | wc -l | tr -d ' '`
 
 ## Start Monogo instant 
-`brew services start mongodb-community`
+`brew services start mongodb-community@4.4`
 
 ## Stop Monogo instant
 
-`brew services stop mongodb-community`
+`brew services stop mongodb-community@4.4`
+
+## brew service list 
+
+`brew services list`
 
 
 # Soruce:
+https://www.mongodb.com/docs/v4.4/tutorial/install-mongodb-on-os-x/
 https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-18-04
 https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
 To Remove https://stackoverflow.com/questions/48630553/homebrew-mongodb-connection-failed-mac-osx-sierra-10-12-6
