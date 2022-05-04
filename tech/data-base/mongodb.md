@@ -44,6 +44,12 @@
 
 `brew services list`
 
+## Add path to access mongod
+
+`vi ~/.zshrc`
+`export PATH="$PATH:/usr/local/opt/mongodb-community@4.4/bin"`
+`source ~/.zshrc`
+
 
 # Soruce:
 https://www.mongodb.com/docs/v4.4/tutorial/install-mongodb-on-os-x/
