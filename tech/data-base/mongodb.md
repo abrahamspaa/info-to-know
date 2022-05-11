@@ -51,6 +51,74 @@
 `source ~/.zshrc`
 
 
+# API 
+
+## Show databases
+
+`show dbs`
+
+## Create database
+
+`use <dataBaseName>`
+
+## Drop database
+
+`use <dataBaseName>`
+`db.dropDatabase()`
+
+## Current database
+
+`db`
+
+## Show collections 
+
+`show collections`
+
+## Create collection name 
+
+`db.createCollection("<>")`
+or
+`db.<collectionName>.insertOne({ .... })`
+
+## List of collections name 
+
+`db.getCollectionNames()`
+
+## Rename collections
+
+`db.<currentName>.renameCollection(<newName>, <currentName>)`
+
+## Insert collection
+
+`db.<collectionName>.insert([{...}])`
+or 
+`db.<collectionName>.insert({...})`
+or 
+`db.<collectionName>.insertOne({ .... })`
+
+## Drop collection
+
+`db.<collectionName>.drop()`
+
+## Find collection
+
+`db.<collectionName>.find({...})`
+`db.<collectionName>.find({...}).pretty()`
+
+## Update collection
+
+`db.<collectionName>.update(CONDITION, UPDATED DATA, OPTIONS)`
+
+## Delete all collection
+
+`db.<collectionName>.remove()`
+
+
+## Delete collection
+
+`db.<collectionName>.remove({..condition..})`
+
+
 # Soruce:
 https://www.mongodb.com/docs/v4.4/tutorial/install-mongodb-on-os-x/
 https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-18-04
