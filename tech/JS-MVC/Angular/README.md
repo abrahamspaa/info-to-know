@@ -9,10 +9,13 @@ It follows JavaScript Model Veiw Whatever (MVW) pattern
 
 ## How it works
 
-<img width="742" alt="Screenshot 2022-06-01 at 6 58 26 AM" src="https://user-images.githubusercontent.com/3948750/171309885-7887b544-0838-419d-91d2-1d1d532ea1ad.png">
+<img width="777" alt="Screenshot 2022-06-01 at 7 47 21 AM" src="https://user-images.githubusercontent.com/3948750/171314628-14343b88-7b52-4022-bfe0-5d3d0e9977c2.png">
 
 
 
-## Components 
+## Create a new app
 
-Component = template + class which contains Properties and Methods + Meta  
+```sh
+npm install -g @angular/cli
+ng new <application-name>
+```
