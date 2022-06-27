@@ -1,8 +1,8 @@
-## what is Services 
+## What is Services?
 - Focused on particular task 
 - Can be focused in global or root injector, and component and its child component injector
 
-## How to create Service
+## How to create Service?
 
 ```cmd
 ng generate service modulesName/serviceName
@@ -46,7 +46,7 @@ import { Component } from '@angular/core';
 export class NameComponent {}
 ```
 
-## How to access service
+## How to access service?
 
 ```ts
 import { Component } from '@angular/core';
@@ -68,5 +68,47 @@ export class ChildComponent implements OnInit {
   }
 }
 ```
+
+## How to access HTTP in service?
+
+```ts
+// app.module.ts
+import { HttpClientModule } from '@angular/common/http';
+
+@ngModule({
+  imports: [HttpClientModule]
+});
+```
+
+```ts 
+import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { catchError, tap } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class NameService {
+  constructor(private http: HttpClient) { }
+  
+  getNames() : Observable<Names[]> {
+    return this.http.get<Names[]>('url').pipe(
+      tap( data => data),
+      catchError(this.handleError)
+    );
+  }
+  
+  private handleError (errors: HttpErrorResponse) {
+    if (errors.error instanceof ErrorEvent ) {
+      // client error
+    } else {
+      // server error
+      console.log(` Error status: ${errors.status}, ${errors.message} `);
+    }
+  }
+}
+```
+
 
 
