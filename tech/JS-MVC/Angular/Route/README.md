@@ -38,7 +38,7 @@ imports: [
 ]
 ```
 
-## Feature module 
+## Feature module or small module
 
 Pros 
 
@@ -52,32 +52,32 @@ How to do?
 * activate the routes (this.route.navigateByUrl('/name'))
 
 ## Data access
-### Route Parameter 
+Ways of accessing data inside the component or modules 
 
+### Route Parameter 
+1. Update path in module 
 ```js
 { path: '/names/:id', component: NameDetailComponent }
-{ path: '/names/:id/edit', component: NameDetailEditComponent }
 ```
-
+2. Add navigation 
 ```html
 <a [routerLink]=['/names', this.id]>
 ```
+or
 ```js
 this.router.navigate(['/names', this.id])
 ```
-
-we can use activated Routes 
-
+3. Access data or value in component
 ```js 
 import { ActivatedRoute } from '@angular/router';
 
 constructor(private route:ActivatedRoute) { }
 
-// using snapshot 
+// Using snapshot 
 
 this.route.snapshot.paramMap.get('id');
 
-// Observable
+// Using Observable
 
 this.route.paramMap.subscribe(
   params => {
@@ -87,15 +87,22 @@ this.route.paramMap.subscribe(
   }
 )
 ```
+4. URL will be `/names/1`
+
 ### Optional Params 
-
-```html
-[routerLink] = ['/names', { name: 'Paul'}]
-
-// /names;name=Paul
+1. Update path in module 
+```js
+{ path: '/names', component: NameDetailComponent }
 ```
-to get values
-
+2. Add navigation 
+```html
+<a [routerLink] = ['/names', { name: name}]> Back </a>
+```
+or
+```js
+this.router.navigate(['/names', { name: names}])
+```
+3. Access data or value in component
 ```js
 import { ActivatedRoute } from '@angular/router';
 
@@ -103,17 +110,25 @@ constructor(private route:ActivatedRoute) {
   this.route.snapshot.paramMap.get('name') // Paul
 }
 ```
+4. URL will be `/names;name=Paul`
+
 ### Query params 
 
-which can we used both optional Params and Query params
-
-
-```html
-[routerLink] = ['/names'] [queryParams] = "{ name: 'Paul'}"
-
-// /names;name=Paul
+1. Update path in module 
+```js
+{ path: '/names', component: NameDetailComponent }
 ```
-
+2. Add navigation 
+```html
+<a [routerLink] = ['/names'] [queryParams] = "{ name: 'Paul'}"> Back </a>
+```
+or 
+```ts
+this.router.navigation(['names'], {
+  name: 'Paul'
+})
+```
+3. Access data or value in component
 ```js
 import { ActivatedRoute } from '@angular/router';
 
@@ -121,10 +136,15 @@ constructor(private route:ActivatedRoute) {
   this.route.snapshot.queryParamMap.get('name') // Paul
 }
 ```
-
-* Route Parameters (/names/:id)
-* Options Parameters 
-* Query Parameters 
+4. URL will be `/names?name=Paul`
+5. To retain the Query params 
+```html
+<a [routerLink] = ['/names'] [queryParams] = "{ name: 'Paul'}" queryParamsHandling='preserve'> Back </a>
+```
+or 
+```ts
+this.route.navigate(['names'], { queryParamsHandling: 'preserve' });
+```
 
 ### Route Data Property 
 
@@ -132,7 +152,8 @@ constructor(private route:ActivatedRoute) {
 // module.ts
 ({ path: '/names', component: NamedisplayComponent, data: { pageTitle: 'Names' }})
 ```
-### Route Resolver 
+### Route Resolver
+
 Route Resolver Example, it will be like a service 
 ```js
 import { Observable } from 'rxjs';
