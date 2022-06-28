@@ -1,6 +1,6 @@
 # Component 
 
-Angular derived by component based architecture. It is import from `import Component from '@angular/core'`. `@Component` is the most important one. Once the component created we need to add this component in app module  or feature modle under declarations.
+Angular derived by component based architecture. It is import from `import Component from '@angular/core'`. `@Component` is the most important one. Once the component created we need to add this component in app module  or feature module under declarations.
 
 
 ## How it works 
