@@ -1,15 +1,11 @@
 # Angular Routing
 
-## Routing process 
-* URL is changed
-* Match the path -> if not match re-direct 
-* Check the Guards 
-* Resolve Data 
-* Activiate the component
-* Display the template is correct router-outlet
+## How is works 
+<img width="991" alt="Screenshot 2022-06-28 at 9 36 25 PM" src="https://user-images.githubusercontent.com/3948750/176227590-c6f35308-7ee8-40dc-b25c-69a134c5c5aa.png">
+
 
 ## RouterModule 
-When u import RouterModule below will be accessable 
+We need import RouterModule below to access routes
 
 ```js
 // app.module
@@ -55,7 +51,8 @@ How to do?
 * Config route (feature.module)
 * activate the routes (this.route.navigateByUrl('/name'))
 
-## Route Parameter 
+## Data access
+### Route Parameter 
 
 ```js
 { path: '/names/:id', component: NameDetailComponent }
@@ -125,17 +122,17 @@ constructor(private route:ActivatedRoute) {
 }
 ```
 
-## Pre-fetch data 
-
-We can feed data to the route by below 
-
 * Route Parameters (/names/:id)
 * Options Parameters 
 * Query Parameters 
-* Route Data Property ({ path: '/names', component: NamedisplayComponent, data: { pageTitle: 'Names' }})
-* Route Resolver 
-* Angular Service 
 
+### Route Data Property 
+
+```ts
+// module.ts
+({ path: '/names', component: NamedisplayComponent, data: { pageTitle: 'Names' }})
+```
+### Route Resolver 
 Route Resolver Example, it will be like a service 
 ```js
 import { Observable } from 'rxjs';
@@ -177,9 +174,7 @@ contructor (private: route: ActivatedRoute) {
   this.nameList = this.route.snapshot.data['resolvedData'];
 }
 ```
-
-need to change when every data updated then follow below instead of above code 
-
+ or 
 ```js 
 // NameEditComponent 
 contructor (private: route: ActivatedRoute) {}
@@ -190,6 +185,7 @@ ngOnInit(): void {
  })
 }
 ```
+### Angular Service 
 
 ## Child Route 
 
