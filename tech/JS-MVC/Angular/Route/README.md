@@ -147,14 +147,18 @@ this.route.navigate(['names'], { queryParamsHandling: 'preserve' });
 ```
 
 ### Route Data Property 
-
 ```ts
 // module.ts
 ({ path: '/names', component: NamedisplayComponent, data: { pageTitle: 'Names' }})
 ```
 ### Route Resolver
+Route resolver is a service, which will await till the data resolved then only View will render.
+1. Create resolver 
+```cmd
+ng generate resolver <folder-name>/<resolve-name>
+```
 
-Route Resolver Example, it will be like a service 
+2. Build service 
 ```js
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -182,11 +186,17 @@ export class NameResolver implements Resolver <Name> {
     
   } 
 }
+```
 
+3. Add resolve to the config 
+```js
 // module.ts
 
 { path : 'name/:id/edit', component: name, resolve: { resolvedData: NameResolver }}
+```
 
+4. Access the data in component
+```js
 // NameEditCompoenent
 
 import { ActivatedRoute } from '@angular/core';
