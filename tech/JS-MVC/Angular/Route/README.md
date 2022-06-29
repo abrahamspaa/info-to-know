@@ -340,6 +340,37 @@ constructor (private router: Router) {
   class="loading" *ngIf="loading"
 ```
 
+## Secondary routes
+
+1. Added outlet in app.html
+```html
+app.html
+
+<router-outlet name="chat-bot"></router-outlet>
+```
+2. Mention route in router
+
+```ts
+// module.ts
+
+RouterModule.forChild[{
+  path: 'chat',
+  component: NameList,
+  outlet: 'chat-bot'
+}]
+```
+3. Mention the code for navigation 
+```ts
+<a [routerLink]="[{ outlets: { popup: ['message']}}]">
+```
+
+4. to close the router
+```ts
+<a [routerLink]="[{ outlets: { popup: null }}]">
+```
+
+## Guards
+
 ## Lazy loading 
 
 How it works ?
