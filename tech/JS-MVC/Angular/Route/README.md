@@ -284,7 +284,7 @@ To highlight the active route link
 ```
 how to do animation 
 
-* import BrowserAnimationModule
+1. import BrowserAnimationModule
 ```js
 // app.module.ts
 
@@ -294,14 +294,14 @@ imports: [
   BrowserAnimationModule
 ]
 ```
-* Define the animation
+* Create needed animation
 ```js
-// put it in a common place 
+// put the needed animation in a new common file 
 ```
 * Register the animation in a component 
 ```js
 // app.component.js
-import { slideInAnimation } from '<new path>'
+import { slideInAnimation } from '<new path to create>'
 @Component({
   animation: [slideInAnimation]
 })
@@ -311,7 +311,7 @@ import { slideInAnimation } from '<new path>'
   <router-outlet #o="outlet"></router-outlet>
 </div>
 ```
-* trigger it 
+* trigger the animation in the route-outlet 
 
 
 ## Loading 
