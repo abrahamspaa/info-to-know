@@ -294,11 +294,11 @@ imports: [
   BrowserAnimationModule
 ]
 ```
-* Create needed animation
+2. Create needed animation
 ```js
 // put the needed animation in a new common file 
 ```
-* Register the animation in a component 
+3. Register the animation in a component 
 ```js
 // app.component.js
 import { slideInAnimation } from '<new path to create>'
@@ -311,7 +311,7 @@ import { slideInAnimation } from '<new path to create>'
   <router-outlet #o="outlet"></router-outlet>
 </div>
 ```
-* trigger the animation in the route-outlet 
+4. trigger the animation in the route-outlet 
 
 
 ## Loading 
