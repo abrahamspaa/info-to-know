@@ -371,6 +371,25 @@ RouterModule.forChild[{
 
 ## Guards
 
+This will validate or guards the route before/after. Route guards is build as a services. 
+
+Type of Guards
+- canActivate (Navigate into the route)
+- canActivateChild (Navigate into the child route)
+- canDeactivate (Navigate way from the route)
+- canLoad (Prevent async loading)
+- resolve (prefetch the data)
+
+How Guards work?
+<img width="951" alt="Screenshot 2022-06-29 at 7 51 53 PM" src="https://user-images.githubusercontent.com/3948750/176460325-f9dd36c9-087d-49ad-9584-8e6d0b761f1e.png">
+
+if any guards return false, all pending guards will be cancelled.
+
+How to create a Guards?
+
+1. Create a Guards service `ng generate guard <folder-name>/<file-name>`
+2. 
+
 ## Lazy loading 
 
 How it works ?
