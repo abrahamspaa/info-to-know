@@ -388,7 +388,37 @@ if any guards return false, all pending guards will be cancelled.
 How to create a Guards?
 
 1. Create a Guards service `ng generate guard <folder-name>/<file-name>`
-2. 
+2. Add logic to the Guard services
+```ts
+
+@Injectable()
+class CanActivateTeam implements CanActivate {
+  constructor(private permissions: Permissions, private currentUser: UserToken) {}
+
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean|UrlTree>|Promise<boolean|UrlTree>|boolean|UrlTree {
+    return this.permissions.canActivate(this.currentUser, route.params.id);
+  }
+}
+```
+3. Added the Guard into roots 
+```ts
+import GuradName from '.../GuradName';
+...
+{
+  path: 'names'
+  canActivate: [GuradName],
+  childern: [
+    { path: '', component: NameListCOmponent},
+    { path: ':id', component: IDComponent },
+    { path: ':id/address', }
+  ]
+}
+```
+
+`canDeactivate` required parameter as component.
 
 ## Lazy loading 
 
