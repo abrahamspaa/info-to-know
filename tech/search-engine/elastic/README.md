@@ -22,6 +22,20 @@ Please follow the below steps
 
 1. Create Bucket - Index go to 'Dev Tool'. Add index name e.g: `GET userList` click run. To check the index added, go to Stack management -> Index patterns 
 2. How to Put data inside the bucket - index  
-  - API `curl -XPOST http://elasticnode/<indexName>/<_doc or _create>/ -H 'Content-Type: application/json' -d '{ "@timestamp": '', users: [] }' `
-  - Upload JSON in Kibana 
+  - API `curl -X POST http://elasticnode/<indexName>/<_doc or _create>/ -H 'Content-Type: application/json' -d '{ "@timestamp": '', users: [] }' `
+  - Upload JSON in Kibana (Home -> Upload data from log file)
   - Beats & Logstash
+
+
+# Beat
+Convert, process and parse into ECS standard the data and pushed inside the Elastic stack 
+
+## Types of Beat
+- File beat (Monitors logs) (To check the status systemctl status filebeat)
+- Metric beat (Device, kind OS)
+- Package beat (Session traffic, etc)
+- Winlog beat (Reading existing archive file)
+- Audit beat (File access, OS)
+- Heart beat (Connectivity)
+- Function beat (Could performace)
+- Elastic agent or Enterpise Detection Response (EDR) (Monitor malare activity)
